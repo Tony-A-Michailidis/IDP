@@ -29,7 +29,7 @@ services:
      POSTGRES_PASSWORD: password
      POSTGRES_DB: keycloak 
    volumes:
-     - ./db-data:/var/lib/postgresql/data
+     - db-data:/var/lib/postgresql/data
    ports:
      - 5432:5432 # optional, only if you want to access the db directly from your host.
    networks:
@@ -37,6 +37,7 @@ services:
 
 volumes:
   db-data:
+  realm-export:
 
 networks:
   gn-network:
