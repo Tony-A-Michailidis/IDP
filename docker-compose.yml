@@ -1,4 +1,15 @@
 services:
+
+# The eycloak service is responsible for running a Keycloak server that does the following: 
+# Identity and Access Management (IAM): Keycloak is an open-source IAM solution. It provides features for:
+#   Authentication: Verifying user identities (e.g., login).
+#   Authorization: Controlling user access to applications and resources.
+#   User Management: Managing user accounts, roles, and permissions.
+#   Single Sign-On (SSO): Allowing users to log in once and access multiple applications without re-authenticating.
+# key information about volumes: 
+# ./realm-export:/opt/keycloak/data/import/export.json: Mounts the realm-export directory from the host machine into the Keycloak container. 
+# This allows Keycloak to import a realm configuration from the export.json file. This is how the command --import-realm finds the realm data. 
+# Do not use in a production environment.
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     command: start-dev --import-realm
@@ -22,6 +33,7 @@ services:
     networks:
       - key-network
 
+# Provides persistent storage for Keycloak's data
   db:
    image: postgres:13
    environment:
@@ -39,6 +51,7 @@ volumes:
   db-data:
   realm-export:
 
+# all containers are connected to the key-network. 
 networks:
   key-network:
     driver: bridge
