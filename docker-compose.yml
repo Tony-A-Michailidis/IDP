@@ -20,7 +20,7 @@ services:
     volumes:
       - ./realm-export:/opt/keycloak/data/import/export.json # optional, for realm imports.
     networks:
-      - gn-network
+      - key-network
 
   db:
    image: postgres:13
@@ -33,12 +33,12 @@ services:
    ports:
      - 5432:5432 # optional, only if you want to access the db directly from your host.
    networks:
-     - gn-network
+     - key-network
 
 volumes:
   db-data:
   realm-export:
 
 networks:
-  gn-network:
+  key-network:
     driver: bridge
