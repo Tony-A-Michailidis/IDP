@@ -9,7 +9,7 @@ services:
 # key information about volumes: 
 # ./realm-export:/opt/keycloak/data/import/export.json: Mounts the realm-export directory from the host machine into the Keycloak container. 
 # This allows Keycloak to import a realm configuration from the export.json file. This is how the command --import-realm finds the realm data. 
-# Do not use in a production environment. --import-realm
+# Do not use in a production environment. Create another realm, not the master, since the import-realm will not import the master realm since it already exists.  
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     command: start-dev --import-realm
@@ -22,7 +22,7 @@ services:
       KC_DB_USERNAME: keycloak
       KC_DB_PASSWORD: password
       KC_HTTP_PORT: 8085
-      KC_HOSTNAME: https://ominous-acorn-jq79964gg7gc55rj-8085.app.github.dev/ 
+      KC_HOSTNAME: https://ominous-acorn-jq79964gg7gc55rj-8085.app.github.dev
       QUARKUS_DATASOURCE_JDBC_POOL_SIZE: 20
     ports:
       - 8085:8085
@@ -47,6 +47,17 @@ services:
    networks:
      - key-network
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80 # Expose Nginx on port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf # Mount your Nginx configuration
+    depends_on:
+      - keycloak
+    networks:
+      - key-network
+      
 volumes:
   db-data:
   realm-export:
