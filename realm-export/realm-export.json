@@ -135,8 +135,8 @@
       }
     ],
     "client": {
-      "test": [],
       "security-admin-console": [],
+      "testtttt": [],
       "admin-cli": [],
       "account-console": [],
       "broker": [
@@ -794,9 +794,9 @@
     },
     {
       "id": "ebee0789-c6ee-42f5-bc78-99c9cae36311",
-      "clientId": "test",
-      "name": "test",
-      "description": "test",
+      "clientId": "testtttt",
+      "name": "testtttt",
+      "description": "test testttttt",
       "rootUrl": "https://ominous-acorn-jq79964gg7gc55rj-8085.app.github.dev/",
       "adminUrl": "https://ominous-acorn-jq79964gg7gc55rj-8085.app.github.dev/",
       "baseUrl": "https://ominous-acorn-jq79964gg7gc55rj-8085.app.github.dev/",
@@ -826,7 +826,9 @@
         "oidc.ciba.grant.enabled": "false",
         "client.secret.creation.time": "1744128751",
         "backchannel.logout.session.required": "true",
+        "frontchannel.logout.session.required": "true",
         "post.logout.redirect.uris": "test",
+        "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false"
       },

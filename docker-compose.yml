@@ -9,7 +9,7 @@ services:
 # key information about volumes: 
 # ./realm-export:/opt/keycloak/data/import/export.json: Mounts the realm-export directory from the host machine into the Keycloak container. 
 # This allows Keycloak to import a realm configuration from the export.json file. This is how the command --import-realm finds the realm data. 
-# Do not use in a production environment.
+# Do not use in a production environment. --import-realm
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     command: start-dev --import-realm
